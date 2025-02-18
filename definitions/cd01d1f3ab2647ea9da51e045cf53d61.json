@@ -1,0 +1,1427 @@
+{
+  "name": "漩影WiFi",
+  "packetVersion": "0x00000004",
+  "protocolType": "var_len",
+  "product_key": "cd01d1f3ab2647ea9da51e045cf53d61",
+  "entities": [
+    {
+      "display_name": "机智云开发套件",
+      "attrs": [
+        {
+          "display_name": "升级授权",
+          "name": "Upgrade_License",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 0,
+          "desc": "0：授权(默认)   1：不授权"
+        },
+        {
+          "display_name": "重启",
+          "name": "Reboot",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 1,
+          "desc": "0：无含义   1：重启"
+        },
+        {
+          "display_name": "恢复出厂设置",
+          "name": "Factory_Settings",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 2,
+          "desc": "0：无含义   1：恢复"
+        },
+        {
+          "display_name": "A泵状态",
+          "name": "State_A",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 3,
+          "desc": "0：已连接  1：未连接"
+        },
+        {
+          "display_name": "B泵状态",
+          "name": "State_B",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 4,
+          "desc": "0：已连接  1：未连接"
+        },
+        {
+          "display_name": "A泵异常",
+          "name": "Error_A",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 5,
+          "desc": "0：正常  1：异常"
+        },
+        {
+          "display_name": "B泵异常",
+          "name": "Error_B",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 6,
+          "desc": "0：正常  1：异常"
+        },
+        {
+          "display_name": "Bak1",
+          "name": "Bak1",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 7,
+          "desc": "0：关     1：开(默认)"
+        },
+        {
+          "display_name": "Bak2",
+          "name": "Bak2",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 8,
+          "desc": "0：关     1：开(默认)"
+        },
+        {
+          "display_name": "Bak3",
+          "name": "Bak3",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 9,
+          "desc": "0：关     1：开(默认)"
+        },
+        {
+          "display_name": "Bak4",
+          "name": "Bak4",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 10,
+          "desc": "0：关     1：开(默认)"
+        },
+        {
+          "display_name": "Bak5",
+          "name": "Bak5",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 11,
+          "desc": "0：关     1：开(默认)"
+        },
+        {
+          "display_name": "Bak6",
+          "name": "Bak6",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 12,
+          "desc": "0：不报警 1：报警"
+        },
+        {
+          "display_name": "Bak7",
+          "name": "Bak7",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 13,
+          "desc": "0：不报警 1：报警"
+        },
+        {
+          "display_name": "Bak8",
+          "name": "Bak8",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 14,
+          "desc": "0：不报警 1：报警"
+        },
+        {
+          "display_name": "Bak9",
+          "name": "Bak9",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 15,
+          "desc": "0：不报警 1：报警"
+        },
+        {
+          "display_name": "Bak10",
+          "name": "Bak10",
+          "data_type": "bool",
+          "position": {
+            "byte_offset": 0,
+            "unit": "bit",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "type": "alert",
+          "id": 16,
+          "desc": "0：不报警 1：报警"
+        },
+        {
+          "display_name": "固件版本号",
+          "name": "Version_Firmware",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 100,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_readonly",
+          "id": 17,
+          "desc": "转换成十进制11，表示1.1"
+        },
+        {
+          "display_name": "模式",
+          "name": "Mode",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 100,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 18,
+          "desc": "0：水流 1：编程   2：喂食  3：关机 4：退出喂食  5：开机"
+        },
+        {
+          "display_name": "喂食时间",
+          "name": "Time_Feed",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 19,
+          "desc": "5~120分钟"
+        },
+        {
+          "display_name": "A泵型号",
+          "name": "Model_A",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 100,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 20,
+          "desc": "0：330 1：350"
+        },
+        {
+          "display_name": "B泵型号",
+          "name": "Model_B",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 100,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 21,
+          "desc": "0：330 1：350"
+        },
+        {
+          "display_name": "清洗提醒",
+          "name": "Wash",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 100,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 22,
+          "desc": "每天凌晨-1"
+        },
+        {
+          "display_name": "Bak11",
+          "name": "Bak11",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 23,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak12",
+          "name": "Bak12",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 24,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak13",
+          "name": "Bak13",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 25,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak14",
+          "name": "Bak14",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 26,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak15",
+          "name": "Bak15",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 27,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak16",
+          "name": "Bak16",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 28,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak17",
+          "name": "Bak17",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 29,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak18",
+          "name": "Bak18",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 30,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak19",
+          "name": "Bak19",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 31,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak20",
+          "name": "Bak20",
+          "data_type": "uint8",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 1,
+            "bit_offset": 0
+          },
+          "uint_spec": {
+            "addition": 0,
+            "max": 255,
+            "ratio": 1,
+            "min": 0
+          },
+          "type": "status_writable",
+          "id": 32,
+          "desc": "备用"
+        },
+        {
+          "display_name": "产品序列号",
+          "name": "Serial_Number",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 12,
+            "bit_offset": 0
+          },
+          "type": "status_readonly",
+          "id": 33,
+          "desc": "序列号 (12字节)"
+        },
+        {
+          "display_name": "日期时间",
+          "name": "Time",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 7,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 34,
+          "desc": "标识年月日时分秒"
+        },
+        {
+          "display_name": "水流模式",
+          "name": "Manual",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 62,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 35,
+          "desc": "（（9+1）*3+1）*2=62"
+        },
+        {
+          "display_name": "编程模式",
+          "name": "Auto",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 781,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 36,
+          "desc": "1+（3+62）*12=781"
+        },
+        {
+          "display_name": "喂食倒计时",
+          "name": "Countdown_Feed",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 3,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 37,
+          "desc": "标识+时+分+秒 标识0--无含义 1--读时间"
+        },
+        {
+          "display_name": "备用电池AB泵转速",
+          "name": "Backup",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 4,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 38,
+          "desc": "A泵转向+转速+B泵转向+转速"
+        },
+        {
+          "display_name": "A泵电流值",
+          "name": "Current_A",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 39,
+          "desc": "固件定义"
+        },
+        {
+          "display_name": "B泵电流值",
+          "name": "Current_B",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 2,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 40,
+          "desc": "固件定义"
+        },
+        {
+          "display_name": "Bak21",
+          "name": "Bak21",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 5,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 41,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak22",
+          "name": "Bak22",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 10,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 42,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak23",
+          "name": "Bak23",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 10,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 43,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak24",
+          "name": "Bak24",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 25,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 44,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak25",
+          "name": "Bak25",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 50,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 45,
+          "desc": "备用"
+        },
+        {
+          "display_name": "Bak26",
+          "name": "Bak26",
+          "data_type": "binary",
+          "position": {
+            "byte_offset": 0,
+            "unit": "byte",
+            "len": 50,
+            "bit_offset": 0
+          },
+          "type": "status_writable",
+          "id": 46,
+          "desc": "备用"
+        }
+      ],
+      "name": "entity0",
+      "id": 0
+    }
+  ],
+  "ui": {
+    "object": {
+      "version": 4,
+      "showEditButton": false
+    },
+    "sections": [
+      {
+        "elements": [
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Upgrade_License"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Upgrade_License",
+            "title": "升级授权"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Reboot"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Reboot",
+            "title": "重启"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Factory_Settings"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Factory_Settings",
+            "title": "恢复出厂设置"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak1"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Bak1",
+            "title": "Bak1"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak2"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Bak2",
+            "title": "Bak2"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak3"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Bak3",
+            "title": "Bak3"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak4"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Bak4",
+            "title": "Bak4"
+          },
+          {
+            "boolValue": false,
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak5"
+              ],
+              "perm": "W"
+            },
+            "type": "QBooleanElement",
+            "key": "entity0.Bak5",
+            "title": "Bak5"
+          },
+          {
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Version_Firmware"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "N"
+            },
+            "type": "QLabelElement",
+            "key": "entity0.Version_Firmware",
+            "title": "固件版本号"
+          },
+          {
+            "title": "模式",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Mode"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Mode",
+            "maximumValue": 100,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "喂食时间",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Time_Feed"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Time_Feed",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "A泵型号",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Model_A"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Model_A",
+            "maximumValue": 100,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "B泵型号",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Model_B"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Model_B",
+            "maximumValue": 100,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "清洗提醒",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Wash"
+              ],
+              "uint_spec": {
+                "max": 100,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Wash",
+            "maximumValue": 100,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak11",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak11"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak11",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak12",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak12"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak12",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak13",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak13"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak13",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak14",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak14"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak14",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak15",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak15"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak15",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak16",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak16"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak16",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak17",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak17"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak17",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak18",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak18"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak18",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak19",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak19"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak19",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "title": "Bak20",
+            "bind": "floatValue:float",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak20"
+              ],
+              "uint_spec": {
+                "max": 255,
+                "step": 1,
+                "min": 0
+              },
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak20",
+            "maximumValue": 255,
+            "minimumValue": 0,
+            "type": "QFloatElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "产品序列号",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Serial_Number"
+              ],
+              "perm": "N"
+            },
+            "value": 0,
+            "key": "entity0.Serial_Number",
+            "maxLength": 24,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "日期时间",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Time"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Time",
+            "maxLength": 14,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "水流模式",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Manual"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Manual",
+            "maxLength": 124,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "编程模式",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Auto"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Auto",
+            "maxLength": 1562,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "喂食倒计时",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Countdown_Feed"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Countdown_Feed",
+            "maxLength": 6,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "备用电池AB泵转速",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Backup"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Backup",
+            "maxLength": 8,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "A泵电流值",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Current_A"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Current_A",
+            "maxLength": 4,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "B泵电流值",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Current_B"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Current_B",
+            "maxLength": 4,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak21",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak21"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak21",
+            "maxLength": 10,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak22",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak22"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak22",
+            "maxLength": 20,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak23",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak23"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak23",
+            "maxLength": 20,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak24",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak24"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak24",
+            "maxLength": 50,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak25",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak25"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak25",
+            "maxLength": 100,
+            "type": "QMultilineElement"
+          },
+          {
+            "keyboardType": "NumbersAndPunctuation",
+            "title": "Bak26",
+            "object": {
+              "action": "entity0",
+              "bind": [
+                "entity0.Bak26"
+              ],
+              "perm": "W"
+            },
+            "value": 0,
+            "key": "entity0.Bak26",
+            "maxLength": 100,
+            "type": "QMultilineElement"
+          }
+        ]
+      }
+    ]
+  }
+}
