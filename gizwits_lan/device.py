@@ -470,10 +470,10 @@ class Device:
             if len(payload) < 4:
                 logger.warning("cmd=0x94 but payload < 4 bytes.")
                 return
-            seq_echo = payload[:4]
+            seq_echo = payload[:4] # First 4 bytes are the sequence echo
             fut = self._pending_requests.pop((0x94, seq_echo), None)
             if fut:
-                fut.set_result(payload[4:])
+                fut.set_result(payload[(-self.max_status_len)-1:]) # Ugh. So the newer firmware ESP32C3 devices prefix their 0x94 responses with UID. This handles both old and new firmware by working backwards as status bytes are last for both device types.
             else:
                 logger.info("Unsolicited cmd=0x94 with seq=%s not found in pending", seq_echo.hex())
             return
