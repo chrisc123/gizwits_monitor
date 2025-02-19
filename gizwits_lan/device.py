@@ -199,6 +199,9 @@ class Device:
             self._connected = True
             self.last_pong = time.time()
 
+            # Add delay after login response (the newer ESP32C3 devices seem to send two login responses in quick succession - have a feeling if we don't wait until after the second one has been sent, things break)
+            await asyncio.sleep(0.2)
+
             # Get initial status
             if not await self.request_status_update():
                 return False
@@ -427,7 +430,7 @@ class Device:
             if fut:
                 fut.set_result(payload)
             else:
-                logger.debug("Unexpected login response (cmd=09) from %s", self.ip)
+                logger.debug("Unexpected (duplicate?) login response (cmd=09) from %s", self.ip)
             return
 
         # Handle Pong (cmd=0x16)
