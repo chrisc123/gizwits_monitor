@@ -60,7 +60,6 @@ class Device:
         self._read_task: asyncio.Task = None
 
         self._pending_requests = {}
-        self._pending_login = None  # Add tracking for login sequence
         self.current_status = None 
 
         self.max_status_len = self._compute_status_len_from_all()
@@ -172,13 +171,10 @@ class Device:
                     name=f"read_loop_{self.ip}"
                 )
 
-            # Allow read loop to start
+            # Allow read loop to start briefly
             await asyncio.sleep(0.1)
 
-            # Login sequence with better response handling
-            self._pending_login = asyncio.get_event_loop().create_future()
-            
-            # Request passcode
+            # Request passcode (cmd=0x06 -> expects cmd=0x07)
             passcode = await self._send_command_no_seq(0x06, 0x07, b"", 5.0)
             if len(passcode) < 2:
                 raise PasscodeError("No passcode length in cmd=07 payload")
@@ -188,23 +184,19 @@ class Device:
                 raise PasscodeError("Device not in binding mode or passcode=0")
             passcode_bytes = passcode[2:2+length_reported]
 
-            # Send login with passcode
+            # Build login payload from passcode
             payload = struct.pack(">H", len(passcode_bytes)) + passcode_bytes
-            self.writer.write(build_prefix_and_command(b"\x00\x08", payload))
-            await self.writer.drain()
-            
-            # Wait for login response
-            try:
-                login_resp = await asyncio.wait_for(self._pending_login, timeout=5.0)
-                if not login_resp or login_resp[0] != 0:
-                    raise LoginError("User login failed (cmd=09 first byte != 0)")
-            except asyncio.TimeoutError:
-                raise LoginError("No login response received within timeout")
-            finally:
-                self._pending_login = None
+
+            # Send login (cmd=0x08 -> expects cmd=0x09)
+            login_resp = await self._send_command_no_seq(0x08, 0x09, payload, 5.0)
+            if not login_resp:
+                raise LoginError("No response received to login request (cmd=09)")
+            if login_resp[0] != 0:
+                logger.error("Login failed - got response code %d (expected 0)", login_resp[0])
+                raise LoginError(f"Login handshake failed with code {login_resp[0]}")
 
             # Mark as connected and set initial pong time
-            self._connected = True  # Set TCP connection state
+            self._connected = True
             self.last_pong = time.time()
 
             # Get initial status
@@ -218,6 +210,7 @@ class Device:
             logger.error("Connection failed to %s: %s", self.ip, str(e))
             await self._do_disconnect()
             return False
+
 
     async def _do_disconnect(self):
         """Clean up connection."""
@@ -418,36 +411,47 @@ class Device:
     async def _handle_incoming_packet(self, cmd: bytes, payload: bytes):
         cmd_int = int.from_bytes(cmd, "big")
         
-        # First handle responses that use the simple mapping
-        if cmd_int in (0x07,):  # Passcode response
+        # First handle passcode response (cmd=0x07)
+        if cmd_int == 0x07:  # Passcode response
             fut = self._pending_requests.pop((cmd_int, None), None)
             if fut:
                 fut.set_result(payload)
-                return  # Important - return after handling
-            logger.debug("Unexpected passcode response")  # Less alarming log level
-                
-        # Then handle login response specifically
-        if cmd_int == 0x09:  # Login response
-            if self._pending_login and not self._pending_login.done():
-                self._pending_login.set_result(payload)
-                return
-            logger.debug("Unexpected login response")  # Less alarming log level
+            else:
+                logger.debug("Unexpected passcode response (cmd=07) from %s", self.ip)
+            # IMPORTANT: return here so we don't re-process 0x07 in any other block
+            return
 
-        # Handle the rest of the packet types
+        # Then handle login response (cmd=0x09)
+        if cmd_int == 0x09:  # Login response
+            fut = self._pending_requests.pop((cmd_int, None), None)
+            if fut:
+                fut.set_result(payload)
+            else:
+                logger.debug("Unexpected login response (cmd=09) from %s", self.ip)
+            return
+
+        # Handle Pong (cmd=0x16)
         if cmd_int == 0x16:  # Pong
             logger.debug("Pong (cmd=16) from %s", self.ip)
             self.last_pong = time.time()
             if isinstance(self.current_status, DeviceStatus):
                 self.current_status.last_pong = self.last_pong
-        elif cmd_int == 0x91:
+            return
+
+        # Handle 0x91 (if needed) or other unsolicited
+        if cmd_int == 0x91:
             logger.info("Unsolicited cmd=0x91 from %s, payload=%s", self.ip, payload.hex())
-        elif cmd_int == 0x93:
+            return
+
+        # Handle 0x93 => Typically means an unsolicited status
+        if cmd_int == 0x93:
             logger.info("Unsolicited cmd=0x93 from %s, payload=%s", self.ip, payload.hex())
             needed = self.max_status_len
             if len(payload) < needed:
                 logger.warning("cmd=0x93 but payload len=%d < %d, ignoring", len(payload), needed)
                 return
             status_data = payload[-self.max_status_len:]
+            logger.debug("Raw status bytes: %s", ' '.join(f'{b:02x}' for b in status_data))
             parsed_dict = self._unpack_status_data(status_data)
             self.current_status = DeviceStatus(parsed_dict)
             logger.info("Device status updated => %s", self.current_status)
@@ -456,13 +460,10 @@ class Device:
                     callback(self.current_status)
                 except Exception as e:
                     logger.error("Error in status callback: %s", e)
-        elif cmd_int in (0x07, 0x09):
-            fut = self._pending_requests.pop((cmd_int, None), None)
-            if fut:
-                fut.set_result(payload)
-            else:
-                logger.info("Unsolicited cmd=0x%02x with no matching request", cmd_int)
-        elif cmd_int == 0x94:
+            return
+
+        # Handle 0x94 => Partial update ACK
+        if cmd_int == 0x94:
             if len(payload) < 4:
                 logger.warning("cmd=0x94 but payload < 4 bytes.")
                 return
@@ -472,9 +473,12 @@ class Device:
                 fut.set_result(payload[4:])
             else:
                 logger.info("Unsolicited cmd=0x94 with seq=%s not found in pending", seq_echo.hex())
-        else:
-            logger.info("Unsolicited cmd=0x%02x from %s, len=%d, payload=%s", 
-                       cmd_int, self.ip, len(payload), payload.hex())
+            return
+        
+        # If we get here, it's some other (possibly extra) command
+        # we haven't specifically handled:
+        logger.info("Unexpected cmd=0x%02x from %s, len=%d, payload=%s", 
+                    cmd_int, self.ip, len(payload), payload.hex())
 
     async def _send_command_no_seq(self, cmd_send: int, cmd_recv: int, payload: bytes, timeout: float) -> bytes:
         cmd_send_bytes = cmd_send.to_bytes(2, "big")
@@ -579,7 +583,9 @@ class Device:
                 logger.warning("Status request: unexpected response format")
                 return False
             
-            parsed_dict = self._unpack_status_data(resp[1:])  # Skip the p0 action byte
+            status_data = resp[1:]  # Skip the p0 action byte
+            logger.debug("Raw status bytes: %s", ' '.join(f'{b:02x}' for b in status_data))
+            parsed_dict = self._unpack_status_data(status_data)
             self.current_status = DeviceStatus(parsed_dict)
             logger.debug("Device status updated => %s", self.current_status)
             
