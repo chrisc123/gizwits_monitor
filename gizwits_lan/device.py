@@ -441,21 +441,25 @@ class Device:
                 self.current_status.last_pong = self.last_pong
             return
 
-        # Handle 0x91 (if needed) or other unsolicited
-        if cmd_int == 0x91:
-            logger.info("Unsolicited cmd=0x91 from %s, payload=%s", self.ip, payload.hex())
-            return
-
-        # Handle 0x93 => Typically means an unsolicited status
-        if cmd_int == 0x93:
-            logger.info("Unsolicited cmd=0x93 from %s, payload=%s", self.ip, payload.hex())
+        # Handle 0x93 or 0x91 => Status updates (solicited or unsolicited)
+        if cmd_int == 0x93 or cmd_int == 0x91:
+            # Check if this is a response we're waiting for
+            fut = self._pending_requests.pop((cmd_int, None), None)
+            if fut:
+                logger.info("Expected status update cmd=0x91 or 0x93 from %s, payload=%s", self.ip, payload.hex())
+                fut.set_result(payload)
+                return
+                
+            # If not a response we're waiting for, treat as unsolicited
+            logger.info("Unsolicited status update cmd=0x91 or 0x93 from %s, payload=%s", self.ip, payload.hex())
             needed = self.max_status_len
             if len(payload) < needed:
-                logger.warning("cmd=0x93 but payload len=%d < %d, ignoring", len(payload), needed)
+                logger.warning("Status update payload len=%d < %d, too short, ignoring", len(payload), needed)
                 return
             status_data = payload[-self.max_status_len:]
             logger.debug("Raw status bytes: %s", ' '.join(f'{b:02x}' for b in status_data))
             parsed_dict = self._unpack_status_data(status_data)
+            # We should really validate the status data is sane first - use the datapoint model to verify 
             self.current_status = DeviceStatus(parsed_dict)
             logger.info("Device status updated => %s", self.current_status)
             for callback in self._status_callbacks:
@@ -577,12 +581,11 @@ class Device:
         if not self._connected:  # Check TCP connection state
             raise RuntimeError("Device not connected")
 
-        seq = struct.pack(">I", int(time.time()) & 0xFFFF)
-        payload = seq + b"\x02"  # 0x02 = Request status update
-
+        # seq = struct.pack(">I", int(time.time()) & 0xFFFF)
+        payload = b"\x02"  # 0x02 = Request status update
         try:
-            resp = await self._send_command_with_seq(0x93, 0x94, seq, payload, timeout)
-            if not resp or resp[0] != 0x03:  # First byte (p0 action byte) should be 0x03 for status response
+            resp = await self._send_command_no_seq(0x90, 0x91, payload, 3)
+            if not resp or (resp[0] != 0x03 and resp[0] != 0x04):  # First byte (p0 action byte) should be 0x03 or seemingly 0x04 for status response
                 logger.warning("Status request: unexpected response format")
                 return False
             
